@@ -75,6 +75,17 @@ print(u1, u2)
 #     members: list = []   # 报错：mutable default
 
 # ✅ 正确：用 default_factory，每次创建实例时调用一次
+
+# default_factory=list 创建实例时调用 list()
+# 每个实例拿到的都是自己独立的空 list，互不影响
+# 几个常用配置
+# members: list = field(default_factory=list)        # 工厂函数生成默认值
+# secret:  str  = field(default="x", repr=False)     # 不出现在 __repr__ 中
+# area:    float = field(init=False)                  # 不出现在 __init__ 参数中
+# tags:    set  = field(default_factory=set)         # 同理
+# config:  dict = field(default_factory=dict)        # 同理
+
+
 @dataclass
 class Team:
     name: str
